@@ -1,0 +1,41 @@
+# Set OS X terminal to random color combination
+# paul@paullesiak.com
+#
+# Add to .bash_profile using "source ~/.color_terminal"
+#
+# Function to set the background color
+set_bg () {
+  osascript -e "tell application \"Terminal\" to set background color of window 1 to $1"
+}
+# Function to set the foreground color
+set_text () {
+  osascript -e "tell application \"Terminal\" to set normal text color of window 1 to $1"
+}
+
+# Define a couple of colors
+green="{0,65535,0}"
+blue="{10000,20000,60000}"
+darkblue="{5000,10000,30000}"
+orange="{60000,40000,00000}"
+red="{60000,00000,00000}"
+darkred="{20000,00000,00000}"
+yellow="{60000,60000,40000}"
+brightyellow="{60000,60000,0}"
+gray="{40000,47000,45000}"
+white="{65535,65535,65535}"
+fernando="{57088,57846,46848}"
+black="{0,0,0}"
+
+# Pick a random number and assign a color template
+# count=$$
+count=$RANDOM
+case $(($count % 8)) in
+  0) set_bg "$darkred" ;  set_text "$white" ;;
+  1) set_bg "$yellow" ;   set_text "$black" ;;
+  2) set_bg "$black" ;    set_text "$green" ;;  
+  3) set_bg "$blue" ;     set_text "$white" ;;
+  4) set_bg "$black" ;    set_text "$yellow" ;;
+  5) set_bg "$darkblue" ; set_text "$brightyellow" ;;
+  6) set_bg "$gray" ;     set_text "$black" ;;
+  7) set_bg "$fernando" ; set_text "$black" ;;
+esac
